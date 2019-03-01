@@ -1,6 +1,7 @@
 module Api
   module V1
     class BaitsController < ApplicationController
+      before_action :authorize_access_request!, except: [:show, :index]
       before_action :set_bait, only: [:show, :update, :destroy]
 
       # GET /baits
