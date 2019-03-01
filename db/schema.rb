@@ -20,15 +20,23 @@ ActiveRecord::Schema.define(version: 2019_03_01_155118) do
   end
 
   create_table "catches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "bait_id"
+    t.bigint "user_id"
     t.string "species"
     t.integer "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bait_id"], name: "index_catches_on_bait_id"
+    t.index ["user_id"], name: "index_catches_on_user_id"
   end
 
   create_table "tackle_box_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "bait_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bait_id"], name: "index_tackle_box_items_on_bait_id"
+    t.index ["user_id"], name: "index_tackle_box_items_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

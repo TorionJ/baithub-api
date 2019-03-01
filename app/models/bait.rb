@@ -1,6 +1,7 @@
 class Bait < ApplicationRecord
 
   # validations
-  validates :category, uniqueness: true
+  validates :name, :category, presence: true
+  validates :name, uniqueness: { scope: :category }
 
 end
