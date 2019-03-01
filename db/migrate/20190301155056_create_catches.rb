@@ -5,6 +5,7 @@ class CreateCatches < ActiveRecord::Migration[5.2]
       t.belongs_to :user, index: true
       t.string :species
       t.integer :weight
+      t.integer :length
 
       t.timestamps
     end

@@ -3,6 +3,7 @@ class CreateBaits < ActiveRecord::Migration[5.2]
     create_table :baits do |t|
       t.string :name
       t.string :category
+      t.string :image
 
       t.timestamps
     end

@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2019_03_01_155118) do
   create_table "baits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "category"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 2019_03_01_155118) do
     t.bigint "user_id"
     t.string "species"
     t.integer "weight"
+    t.integer "length"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bait_id"], name: "index_catches_on_bait_id"
