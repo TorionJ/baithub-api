@@ -6,7 +6,7 @@ module Api
 
       # GET /tackle_box_items
       def index
-        @tackle_box_items = TackleBoxItem.all
+        @tackle_box_items = current_user.tackleboxitems.all
 
         render json: @tackle_box_items
       end
@@ -18,7 +18,7 @@ module Api
 
       # POST /tackle_box_items
       def create
-        @tackle_box_item = TackleBoxItem.new(tackle_box_item_params)
+        @tackle_box_item = current_user.tackleboxitems.build(tackle_box_item_params)
 
         if @tackle_box_item.save
           render json: @tackle_box_item, status: :created, location: @tackle_box_item
@@ -44,12 +44,12 @@ module Api
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_tackle_box_item
-          @tackle_box_item = TackleBoxItem.find(params[:id])
+          @tackle_box_item = current_user.tackleboxitems.find(params[:id])
         end
 
         # Only allow a trusted parameter "white list" through.
         def tackle_box_item_params
-          params.fetch(:tackle_box_item, {})
+          params.require(:tackle_box_item).permit(:bait_id)
         end
       end
     end

@@ -5,7 +5,7 @@ module Api
       before_action :set_catch, only: [:show, :update, :destroy]
       # GET /catches
       def index
-        @catches = Catch.all
+        @catches = current_user.catches.all
 
       render json: @catches
       end
@@ -16,7 +16,7 @@ module Api
 
       # POST /catches
       def create
-        @catch = Catch.new(catch_params)
+        @catch = current_user.catches.build(catch_params)
 
         if @catch.save
           render json: @catch, status: :created, location: @catch
@@ -42,12 +42,12 @@ module Api
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_catch
-          @catch = Catch.find(params[:id])
+          @catch = current_user.catches.find(params[:id])
         end
 
         # Only allow a trusted parameter "white list" through.
         def catch_params
-          params.require(:catch).permit(:species, :weight)
+          params.require(:catch).permit(:species, :weight, :length, :bait_id)
         end
       end
     end
